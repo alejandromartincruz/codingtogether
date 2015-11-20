@@ -1,20 +1,20 @@
 <div class="display-content">
 	<div class="sidebar">
-		<div class="up"><%= @users.first.username %></div>
-		<div class="mid">esto va en medio</div>
-		<div class="down">esto va debajo</div>
+		<div class="sidebar-inside">
+		<div class="up"><%= link_to "New Event", new_event_path,
+      :class => "btn btn-success" %> </div>
+		<div class="up">Primer usuario de BBDD: <%= @users.first.username %></div>
+		<div class="mid">estas logeado? <%=user_signed_in?%></div>
+		
+		<div class="down">Usuario logeado: <%if user_signed_in? %><%= current_user.username %><%else%>none<%end%></div>
+		</div>
 	</div>
 	<div class="index-content">
 	<div id="map">here is a big map</div>
-	
-	<hr>
-	 <div class="product row" ng-repeat="event in event.products">
-      <h3>
-        {{event.products.name}}
-        <em class="pull-right">{{event.products.price}}</em>
-      </h3>
-    </div>
-    <hr>		
+		
 	</div>
 
 </div>
+
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap"></script>
