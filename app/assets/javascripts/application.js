@@ -17,4 +17,6 @@
 //= require angular
 //= require angular-animate
 //= require angular-resource
+//= require app.js
+//= require geomaps.js
 //= require_tree .

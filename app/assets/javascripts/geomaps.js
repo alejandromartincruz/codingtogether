@@ -11,17 +11,17 @@ function onLocation(position){
     lng: position.coords.longitude
   };
 
-  var x = document.cookie;
-  reopen(x);
+  //var x = document.cookie;
+  //reopen(x);
 
   createMap(myPosition);
-  setupAutocomplete();
+  //setupAutocomplete();
 }
 
 function onError(err){
   console.log("What are you using, IE 7??", err);
 }
-
+/*
 function reopen(x){
   positions = x.split("=");
   console.log(positions)
@@ -31,6 +31,7 @@ function reopen(x){
   }
   console.log(pos);
 }
+*/
 
 function createMap(position){
   map = new google.maps.Map($('#map')[0], {
@@ -49,10 +50,11 @@ function createMarker(position, info) {
    content: info
  });
   var timestamp = Number(new Date());
-  setCookie("marker"+timestamp, position, 1);
+  //setCookie("marker"+timestamp, position, 1);
 
 }
 
+/*
 function setupAutocomplete(){
   var input = $('#get-places')[0];
   var autocomplete = new google.maps.places.Autocomplete(input);
@@ -89,3 +91,4 @@ function getCookie(cname) {
     }
     return "";
 }
+*/

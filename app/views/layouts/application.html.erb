@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="eventManager">
 	<head>
 		<title>CodingTogether</title>
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
-		<link rel="stylesheet" type="text/css" href="flexbox.css">
 	</head>
-	<body>
+	<body ng-controller="eventController as event">
 		<div class="container">
 			<div class="header">
 				<div class="logo">
-					<img src=<%= asset_path('logo.png')%> class="title-logo">
+					<a href="/"><img src=<%= asset_path('logo.png')%> class="title-logo"></a>
 				</div>
 				<div class="header-buttons">
 					button 1 / button 2 / button 3
@@ -30,7 +29,7 @@
 			</div>
 		</div>
 		<script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=initMap"></script>
-        <script type="text/javascript" src="geomaps.js"></script>
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap"></script>
 	</body>
 </html>
+

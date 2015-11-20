@@ -64,3 +64,10 @@
   height: 80%;
   width: 100%;
 }
+
+.sign-form{
+  margin: auto;
+  width: 60%;
+    border:3px solid #73AD21;
+    padding: 10px;
+}

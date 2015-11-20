@@ -1,14 +1,20 @@
 <div class="display-content">
 	<div class="sidebar">
-		<div class="up">@users.first.username</div>
+		<div class="up"><%= @users.first.username %></div>
 		<div class="mid">esto va en medio</div>
 		<div class="down">esto va debajo</div>
 	</div>
 	<div class="index-content">
 	<div id="map">here is a big map</div>
+	
 	<hr>
-	<div id="calendar"></div>
-		
+	 <div class="product row" ng-repeat="event in event.products">
+      <h3>
+        {{event.products.name}}
+        <em class="pull-right">{{event.products.price}}</em>
+      </h3>
+    </div>
+    <hr>		
 	</div>
 
 </div>
