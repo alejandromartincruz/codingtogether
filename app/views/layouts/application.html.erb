@@ -6,7 +6,7 @@
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
 	</head>
-	<body ng-controller="eventController as event">
+	<body ng-controller="eventController as eventShow">
 		<div class="container">
 			<div class="header">
 				<div class="logo">
@@ -22,9 +22,10 @@
 			<div class="content">
 				<%= yield %>
 			</div>
+			<div style="clear:both;"></div>
 			<div class="footer">
 				<div>
-					Webpage developed by Alejandro Martin
+					<center>Webpage developed by Alejandro Martin</center>
 				</div>
 			</div>
 		</div>

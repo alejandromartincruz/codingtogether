@@ -1,8 +1,10 @@
 <div class="display-content">
 	<div class="sidebar">
 		<div class="sidebar-inside">
-		<div class="up"><%= link_to "New Event", new_event_path,
-      :class => "btn btn-success" %> </div>
+		<div class="up">
+			<%= link_to "View Events", events_path, :class => "btn btn-success wide-btn" %>
+			<%= link_to "New Event", new_event_path, :class => "btn btn-success wide-btn" %>
+      </div>
 		<div class="up">Primer usuario de BBDD: <%= @users.first.username %></div>
 		<div class="mid">estas logeado? <%=user_signed_in?%></div>
 		
@@ -11,7 +13,19 @@
 	</div>
 	<div class="index-content">
 	<div id="map">here is a big map</div>
-		
+	<hr>
+	<div class="events-height">
+	<div ng-repeat="event in eventShow.events">
+		<div class="panel panel-default sign-form">
+			<div class="panel-heading">
+				<h3>{{event.title}}</h3>
+			</div>
+			<div class="panel-body">
+				Description:<br>{{event.description}}
+			</div>
+		</div>
+	</div>
+	</div>
 	</div>
 
 </div>

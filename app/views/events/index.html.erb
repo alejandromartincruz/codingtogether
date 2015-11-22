@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
-
+<div class="content">
+  <div class="panel panel-default sign-form">
+    <div class="panel-heading">
 <h1>Listing Events</h1>
-
-<table>
+</div>
+    <div class="panel-body">
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -22,9 +25,9 @@
         <td><%= event.hour %></td>
         <td><%= event.duration %></td>
         <td><%= event.date %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', event, :class => "btn btn-success" %></td>
+        <td><%= link_to 'Edit', edit_event_path(event), :class => "btn btn-success" %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-success" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,3 +36,6 @@
 <br>
 
 <%= link_to 'New Event', new_event_path %>
+    </div>
+  </div>
+</div>
