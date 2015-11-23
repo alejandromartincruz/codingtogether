@@ -45,10 +45,8 @@ class EventsController < ApplicationController
     if current_user.nil? 
       redirect_to new_user_session_path
     else
-      user = {user_id: current_user.id}
-      new_event_params = event_params.merge(user)
-      @event = Event.new(new_event_params)
-
+      user = User.find_by(id: current_user.id);
+      @event = user.events.new(event_params)
       respond_to do |format|
         if @event.save
           format.html { redirect_to @event, notice: 'Event was successfully created.' }

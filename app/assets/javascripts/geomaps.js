@@ -13,7 +13,7 @@ function onLocation(position){
   };
 
   createMap(myPosition);
-  //setupAutocomplete();
+  setupAutocomplete();
 }
 
 function onError(err){
@@ -91,9 +91,9 @@ function createMarker(position, info) {
       + status + ', ' + errorThrown);
   }
 
-/*
+
 function setupAutocomplete(){
-  var input = $('#get-places')[0];
+  var input = $('#location-placheholder')[0];
   var autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.addListener('place_changed', function(){
     var place = autocomplete.getPlace();
@@ -108,7 +108,7 @@ function setupAutocomplete(){
     }
   });
 }
-
+/*
 //-------------------- cookies time... does it work?
 
 function setCookie(cname, cvalue, exdays) {

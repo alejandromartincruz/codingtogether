@@ -11,4 +11,12 @@
   			});
   	}]);
 
+  	app.controller('newEventController', ['$http', function($http){
+  		var store = this;
+  		this.addEvent = function(event) {
+  			$http.post('/events.json', store).success(function(){store.event={}});
+  		};
+  		
+  	}]);
+
 })();

@@ -1,9 +1,13 @@
 <div class="display-content">
+
 	<div class="sidebar">
 		<div class="sidebar-inside">
 		<div class="up">
 			<a id="button" class="btn btn-success wide-btn show-events" href="#">View Events</a>
+			<a id="new-event-button" class="btn btn-success wide-btn new-event" href="#" ng-show = <%= user_signed_in? %>>New Event</a>
+			<div ng-show = <%= user_signed_in? %> >
 			<%= link_to "New Event", new_event_path, :class => "btn btn-success wide-btn" %>
+			</div>
       </div>
 		<div class="up">Primer usuario de BBDD: <%= @users.first.username %></div>
 		<div class="mid">estas logeado? <%=user_signed_in?%></div>
@@ -11,23 +15,83 @@
 		<div class="down">Usuario logeado: <%if user_signed_in? %><%= current_user.username %><%else%>none<%end%></div>
 		</div>
 	</div>
-	<div class="index-content">
-	<div id="map">here is a big map</div>	
+
+	<div class="events-left-bar" id='hideshow' value='hide/show'>
+		<div class="index-form">
+		<!--  Review Form -->
+            <form name="reviewForm" ng-controller="newEventController as newCtrl" ng-submit="newCtrl.addEvent(event)">
+              <!--  Live Preview -->
+              <blockquote>
+                <strong>{{newCtrl.event.title}}</strong>
+                {{newCtrl.event.description}} <br>
+                Date: {{newCtrl.event.date}} - Hour: {{newCtrl.event.hour}}<br>
+                Duration: {{newCtrl.event.duration}} minutes 
+                <cite class="clearfix"> -{{newCtrl.event.date}} </cite>
+              </blockquote>
+
+              <!--  Review Form -->
+              <h4>Submit a new Event</h4>
+              <!--
+              <fieldset class="form-group">
+                <select ng-model="newCtrl.event.languaje" class="form-control" ng-options="languaje for languajes in [Java,Ruby,RoR,Javascript,C++]"  title="Languajes">
+                  <option value="Java">Java</option>
+                  <option value="Ruby">Ruby</option>
+                  <option value="Ruby on Rails">Ruby on Rails</option>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="C++">C++</option>
+                </select>
+              </fieldset>
+              -->
+              <fieldset class="form-group">
+                <input ng-model="newCtrl.event.title" type="text" class="form-control" placeholder="Title of the event" title="Title" />
+              </fieldset>
+              <fieldset class="form-group">
+                <textarea ng-model="newCtrl.event.description" class="form-control" placeholder="Write the description of the event..." title="Description"></textarea>
+              </fieldset>
+              <fieldset class="form-group">
+                <input ng-model="newCtrl.event.date" type="date" class="form-control" placeholder="Day of the event" title="Date" />
+              </fieldset>
+              <fieldset class="form-group">
+                <input ng-model="newCtrl.event.hour" type="time" class="form-control" placeholder="Hour of the event" title="Hour" />
+              </fieldset>
+              <fieldset class="form-group">
+                <input ng-model="newCtrl.event.duration" type="number" class="form-control" placeholder="The duration of the event in minutes" title="Duration" />
+              </fieldset>
+              <fieldset class="form-group">
+                <input ng-model="newCtrl.location.formatted_address" type="text" ID="location-placheholder" class="form-control" placeholder="Where will be the event?" title="Location" />
+              </fieldset>
+              <fieldset class="form-group">
+                <input type="submit" class="btn btn-primary pull-right" value="Submit new Event" />
+              </fieldset>
+            </form>
+        </div>
+
+		
 	</div>
+
+	
+	<div id="map">here is a big map</div>	
+
+
 	<div class="events-right-bar" id='hideshow' value='hide/show'>
 	<section ng-repeat="event in eventShow.events">
 		<div class="panel panel-default single-event">
 			<div class="panel-heading">
-				<h3>{{event.title}}</h3>
+				<h3>
+					{{event.title}}
+					<em class="pull-right">Created by user: {{event.user_id}</em>
+				</h3>
 			</div>
 			<div class="panel-body">
-				Description:<br>{{event.description}}
+				Description:<br>{{event.description}} <br>
+				<em class="pull-right">{{event.date}} - {{event.hour}}</em> <br>
+				{{event.duration}} minutes
 			</div>
 		</div>
 	</section>
 	</div>
 
 </div>
-<script src="actions.js" ></script>
+
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap"></script>
