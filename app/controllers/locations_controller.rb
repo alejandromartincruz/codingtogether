@@ -16,6 +16,7 @@
 
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :require_login, :only=>[:new,:edit,:update] 
 
   # GET /locations
   # GET /locations.json

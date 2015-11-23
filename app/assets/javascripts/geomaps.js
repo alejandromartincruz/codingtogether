@@ -1,3 +1,4 @@
+'use strict'
 var map;
 
 if ("geolocation" in navigator){
@@ -11,48 +12,84 @@ function onLocation(position){
     lng: position.coords.longitude
   };
 
-  //var x = document.cookie;
-  //reopen(x);
-
   createMap(myPosition);
   //setupAutocomplete();
 }
 
 function onError(err){
-  console.log("What are you using, IE 7??", err);
+  console.log("What browser are you using? IE 7??", err);
 }
-/*
-function reopen(x){
-  positions = x.split("=");
-  console.log(positions)
-  var pos = [];
-  for (var i=1; i<x.length;i=i+2){
-      pos.push(x[i]);
-  }
-  console.log(pos);
-}
-*/
 
 function createMap(position){
   map = new google.maps.Map($('#map')[0], {
     center: position,
-    zoom: 17
+    zoom: 15,
   });
-  createMarker(position);
+  yourPosition(position);
 
+  $( document ).ready(function() {
+    $.ajax({
+      url:"http://localhost:3000/locations.json",
+      dataType: "json",
+      success: handleSucess,
+      error: handleError
+    });
+  });
 }
+
+function yourPosition(position){
+
+  var marker = new google.maps.Marker({
+    position: position,
+    animation: google.maps.Animation.DROP,
+    map: map,
+        icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        strokeColor: "blue",
+        scale: 6
+    },
+    label:"Y",
+    title: "You are here",
+    content:"This is your actual position",
+    color: "blue"
+  });
+};
+
+
 
 function createMarker(position, info) {
-  var marker = new google.maps.Marker({
-   position: position,
-   map: map,
-   title: info,
-   content: info
- });
-  var timestamp = Number(new Date());
-  //setCookie("marker"+timestamp, position, 1);
+  //debugger;
+  console.log(position);
+  console.log(info);
+  var marker2 = new google.maps.Marker({
+    position: position,
+    map: map,
+    animation: google.maps.Animation.DROP,
+    label: 'E',
+    title: info,
+    content: info
+  });
+  console.log("marker created?")
+};
 
-}
+
+
+  function handleSucess(data){
+    //displayCharacters(data);
+    data.forEach(function(position_hash) {
+      console.log(position_hash);
+      var eventPosition = {
+        lat: position_hash.latitude,
+        lng: position_hash.longitude
+      };
+      createMarker(eventPosition, position_hash.formatted_address);
+    });
+  }
+
+  function handleError(jqXHR, status, errorThrown){
+    alert("Something bad happened: "
+      + status + ', ' + errorThrown);
+  }
 
 /*
 function setupAutocomplete(){

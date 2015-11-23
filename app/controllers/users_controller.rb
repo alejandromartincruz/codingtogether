@@ -15,10 +15,9 @@
 # ===========================================================================
 
 class UsersController < ApplicationController
-
+	skip_before_filter :require_login, :only=>[:edit,:update]
 	def index
 		@users = User.all
-		@events = Event.all
 	end
 
 end

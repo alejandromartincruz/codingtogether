@@ -27,6 +27,9 @@ User.destroy_all
 
 puts "++++++++++ Generating new data ++++++++++"
 
+r1 = Role.create({name: "Regular", description: "Can read items"})
+r2 = Role.create({name: "Admin", description: "Can perform any CRUD operation on any resource"})
+
 (1..10).each do |index|
 	User.create(email: Faker::Internet.email, username: Faker::Name.name, password: "12345678")
 end

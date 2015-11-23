@@ -53,6 +53,6 @@ group :development do
   gem 'spring'
   gem 'pry-rails'
   gem 'faker'
-  gem'rspec-rails'
+  gem 'rspec-rails'
 end
 

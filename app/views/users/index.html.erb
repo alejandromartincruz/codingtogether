@@ -2,7 +2,7 @@
 	<div class="sidebar">
 		<div class="sidebar-inside">
 		<div class="up">
-			<%= link_to "View Events", events_path, :class => "btn btn-success wide-btn" %>
+			<a id="button" class="btn btn-success wide-btn show-events" href="#">View Events</a>
 			<%= link_to "New Event", new_event_path, :class => "btn btn-success wide-btn" %>
       </div>
 		<div class="up">Primer usuario de BBDD: <%= @users.first.username %></div>
@@ -12,11 +12,11 @@
 		</div>
 	</div>
 	<div class="index-content">
-	<div id="map">here is a big map</div>
-	<hr>
-	<div class="events-height">
-	<div ng-repeat="event in eventShow.events">
-		<div class="panel panel-default sign-form">
+	<div id="map">here is a big map</div>	
+	</div>
+	<div class="events-right-bar" id='hideshow' value='hide/show'>
+	<section ng-repeat="event in eventShow.events">
+		<div class="panel panel-default single-event">
 			<div class="panel-heading">
 				<h3>{{event.title}}</h3>
 			</div>
@@ -24,11 +24,10 @@
 				Description:<br>{{event.description}}
 			</div>
 		</div>
-	</div>
-	</div>
+	</section>
 	</div>
 
 </div>
-
+<script src="actions.js" ></script>
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap"></script>

@@ -24,5 +24,10 @@ class User < ActiveRecord::Base
   has_many :events, dependent: :destroy
 
   validates :username, uniqueness: true
+  before_save :assign_role
+
+def assign_role
+  self.role = Role.find_by name: "Regular" if self.role.nil?
+end
 
 end
