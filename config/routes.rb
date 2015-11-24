@@ -17,7 +17,6 @@
 Rails.application.routes.draw do
   resources :roles
   resources :events
-  resources :locations
   
   devise_for :users, path: '',
   					 path_names: { sign_in: 'login', sign_up: 'register'}

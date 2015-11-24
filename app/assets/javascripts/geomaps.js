@@ -29,7 +29,7 @@ function createMap(position){
 
   $( document ).ready(function() {
     $.ajax({
-      url:"http://localhost:3000/locations.json",
+      url:"http://localhost:3000/events.json",
       dataType: "json",
       success: handleSucess,
       error: handleError
@@ -61,7 +61,7 @@ function createMarker(position, info) {
   //debugger;
   console.log(position);
   console.log(info);
-  var marker2 = new google.maps.Marker({
+  var marker = new google.maps.Marker({
     position: position,
     map: map,
     animation: google.maps.Animation.DROP,
@@ -69,7 +69,7 @@ function createMarker(position, info) {
     title: info,
     content: info
   });
-  console.log("marker created?")
+  console.log("marker created")
 };
 
 
@@ -77,12 +77,13 @@ function createMarker(position, info) {
   function handleSucess(data){
     //displayCharacters(data);
     data.forEach(function(position_hash) {
+
       console.log(position_hash);
       var eventPosition = {
         lat: position_hash.latitude,
         lng: position_hash.longitude
       };
-      createMarker(eventPosition, position_hash.formatted_address);
+      createMarker(eventPosition, position_hash.formatted_addres);
     });
   }
 
@@ -100,8 +101,13 @@ function setupAutocomplete(){
     var infowindow = new google.maps.InfoWindow({
     });
     if (place.geometry.location) {
+      $("#location-longitude").val(place.geometry.location.lng().toFixed(7));
+      $("#location-longitude").trigger('input');
+      $("#location-latitude").val(place.geometry.location.lat().toFixed(7));
+      $("#location-latitude").trigger('input');
+      $("location-placeholder").val(place.formatted_address);
+      $("location-placeholder").trigger('input');
       map.setCenter(place.geometry.location);
-      map.setZoom(17);
       createMarker(place.geometry.location, place.formatted_address);
     } else {
       alert("The place has no location...?")

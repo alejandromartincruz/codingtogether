@@ -16,5 +16,5 @@
 
 class Event < ActiveRecord::Base
 	belongs_to :user
-	has_many :locations, dependent: :destroy
+	belongs_to :location
 end

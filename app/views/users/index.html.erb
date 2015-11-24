@@ -19,14 +19,16 @@
 	<div class="events-left-bar" id='hideshow' value='hide/show'>
 		<div class="index-form">
 		<!--  Review Form -->
-            <form name="reviewForm" ng-controller="newEventController as newCtrl" ng-submit="newCtrl.addEvent(event)">
+            <form name="eventForm" ng-controller="newEventController as newCtrl" ng-submit="eventForm.$valid && newCtrl.addEvent(event)" novalidate>
               <!--  Live Preview -->
               <blockquote>
                 <strong>{{newCtrl.event.title}}</strong>
                 {{newCtrl.event.description}} <br>
-                Date: {{newCtrl.event.date}} - Hour: {{newCtrl.event.hour}}<br>
-                Duration: {{newCtrl.event.duration}} minutes 
-                <cite class="clearfix"> -{{newCtrl.event.date}} </cite>
+                <cite class="clearfix" ng-show="eventForm.$valid">
+                 Date: {{newCtrl.event.date | date:'dd-MM-yyyy'}} <br>
+                 Hour: {{newCtrl.event.hour | date:"H:mm"}} <br>
+                 Duration: {{newCtrl.event.duration}} minutes 
+                </cite>
               </blockquote>
 
               <!--  Review Form -->
@@ -43,26 +45,33 @@
               </fieldset>
               -->
               <fieldset class="form-group">
-                <input ng-model="newCtrl.event.title" type="text" class="form-control" placeholder="Title of the event" title="Title" />
+                <input ng-model="newCtrl.event.title" type="text" class="form-control" placeholder="Title of the event" title="Title" required/>
               </fieldset>
               <fieldset class="form-group">
-                <textarea ng-model="newCtrl.event.description" class="form-control" placeholder="Write the description of the event..." title="Description"></textarea>
+                <textarea ng-model="newCtrl.event.description" class="form-control" placeholder="Write the description of the event..." title="Description" required></textarea>
               </fieldset>
               <fieldset class="form-group">
-                <input ng-model="newCtrl.event.date" type="date" class="form-control" placeholder="Day of the event" title="Date" />
+                <input ng-model="newCtrl.event.date" type="date" class="form-control" placeholder="Day of the event" title="Date" required/>
               </fieldset>
               <fieldset class="form-group">
-                <input ng-model="newCtrl.event.hour" type="time" class="form-control" placeholder="Hour of the event" title="Hour" />
+                <input ng-model="newCtrl.event.hour" type="time" class="form-control" placeholder="Hour of the event" title="Hour" required/>
               </fieldset>
               <fieldset class="form-group">
-                <input ng-model="newCtrl.event.duration" type="number" class="form-control" placeholder="The duration of the event in minutes" title="Duration" />
+                <input ng-model="newCtrl.event.duration" type="number" class="form-control" placeholder="The duration of the event in minutes" title="Duration" min=1 required />
               </fieldset>
               <fieldset class="form-group">
-                <input ng-model="newCtrl.location.formatted_address" type="text" ID="location-placheholder" class="form-control" placeholder="Where will be the event?" title="Location" />
+                <input ng-model="newCtrl.event.formatted_addres" type="text" ID="location-placheholder" class="form-control" placeholder="Where will be the event?" title="Location" required />
+              </fieldset>
+              <fieldset ng-show ="false" class="form-group">
+                <input ng-model="newCtrl.event.longitude" type="float" ID="location-longitude" class="form-control" title="Location-longitude" required />
+              </fieldset>
+              <fieldset ng-show ="false" class="form-group">
+                <input ng-model="newCtrl.event.latitude" type="float" ID="location-latitude" class="form-control" title="Location-latitude" required />
               </fieldset>
               <fieldset class="form-group">
-                <input type="submit" class="btn btn-primary pull-right" value="Submit new Event" />
+                <input id="submit-event-button" type="submit" class="btn btn-primary pull-right" value="Submit new Event" />
               </fieldset>
+              <div>form is {{eventForm.$valid}}</div>
             </form>
         </div>
 
@@ -73,8 +82,8 @@
 	<div id="map">here is a big map</div>	
 
 
-	<div class="events-right-bar" id='hideshow' value='hide/show'>
-	<section ng-repeat="event in eventShow.events">
+	<div class="events-right-bar scrollable-content" id='hideshow' value='hide/show'>
+	<section ng-repeat="event in eventShow.events | orderBy:'date'">
 		<div class="panel panel-default single-event">
 			<div class="panel-heading">
 				<h3>
@@ -84,7 +93,7 @@
 			</div>
 			<div class="panel-body">
 				Description:<br>{{event.description}} <br>
-				<em class="pull-right">{{event.date}} - {{event.hour}}</em> <br>
+				<em class="pull-right">{{event.date | date:'dd-MM-yyyy' }} - {{event.hour | date:"H:mm"}}</em> <br>
 				{{event.duration}} minutes
 			</div>
 		</div>
@@ -95,3 +104,4 @@
 
 <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap"></script>
+<script async defer type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>

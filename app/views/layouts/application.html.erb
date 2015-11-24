@@ -5,13 +5,13 @@
 		<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
 		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 		<%= csrf_meta_tags %>
-		
+
 	</head>
 	<body ng-controller="eventController as eventShow">
 		<div class="container">
 			<div class="header">
 				<div class="logo">
-					<%= link_to image_tag(asset_path('logo.png'), :class => "title-logo"), root_path %>
+					<%= link_to image_tag(asset_path('logo.png'), :class => "title-logo"), root_path, 'data-no-turbolink' => true %>
 				</div>
 				<div class="header-buttons">
 					Here comes some buttons or something
@@ -25,8 +25,8 @@
 			</div>
 			<div class="clear"></div>
 			<div class="footer">
-				<div>
-					<center>Webpage developed by Alejandro Martin</center>
+				<div class="center">
+					Webpage developed by Alejandro Martin
 				</div>
 			</div>
 		</div>
