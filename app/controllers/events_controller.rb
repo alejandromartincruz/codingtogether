@@ -51,6 +51,7 @@ class EventsController < ApplicationController
     else
       user = User.find_by(id: current_user.id);
       @event = user.events.new(event_params)
+      @event.all_tags
       respond_to do |format|
         if @event.save
           format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -95,6 +96,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :description, :hour, :duration, :date, :longitude, :latitude, :formated_address)
+      params.require(:event).permit(:title, :description, :hour, :duration, :date, :longitude, :latitude, :formatted_addres, :all_tags)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151124173038) do
+ActiveRecord::Schema.define(version: 20151125143417) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -30,23 +30,30 @@ ActiveRecord::Schema.define(version: 20151124173038) do
 
   add_index "events", ["user_id"], name: "index_events_on_user_id"
 
-  create_table "locations", force: :cascade do |t|
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "formatted_address"
-    t.integer  "event_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  add_index "locations", ["event_id"], name: "index_locations_on_event_id"
-
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer  "event_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "taggings", ["event_id"], name: "index_taggings_on_event_id"
+  add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["name"], name: "index_tags_on_name"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -18,12 +18,14 @@
 
   	app.controller('newEventController', ['$http', function($http){
   		var store = this;
+      
   		this.addEvent = function(event) {
+        
   			$http.post('/events.json', store).success(function(){
-  				$http.post('/locations.json', store).success(function(){store.event={}});
+  				$( ".events-left-bar" ).toggle();
+          store.event={}
   			});
-  			$( ".events-left-bar" ).toggle();
-  			store.event={}
+  			
   		};
   		
   	}]);
