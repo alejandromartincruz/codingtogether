@@ -1,0 +1,22 @@
+{
+  "name": "codingtogether",
+  "homepage": "https://github.com/alejandromartincruz/codingtogether",
+  "authors": [
+    "alejandromartincruz <socorreitor@gmail.com>"
+  ],
+  "description": "web for events",
+  "main": "",
+  "moduleType": [],
+  "license": "apache license v2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs-datepicker": "~0.2.14",
+    "angular-google-maps": "~2.2.1"
+  }
+}

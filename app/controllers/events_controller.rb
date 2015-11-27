@@ -23,9 +23,14 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
     respond_to do |format|
-      format.html { render :index }
-      format.json { render json: @events }
+      format.html 
+      format.json 
     end
+  end
+
+
+  def find_by_tag
+    @events = Event.tagged_with(:param)
   end
 
   # GET /events/1

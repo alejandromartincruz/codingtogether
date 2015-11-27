@@ -31,6 +31,8 @@
 
 /* end of header styles */
 
+/* this div holds the yield content */
+
 .content{
   display: flex;
   flex-grow: 1;
@@ -39,14 +41,49 @@
   background-color: #EEE;
 }
 
-.events-right-bar{
-  height: 100vh;
-  padding-bottom : 40px;
-  flex: 2;
-  display:none;
-  background-color: #CADFAA;
-  border-left:3px solid #73AD21;
+/* end of styles */
+
+/* applied to the fix sidebar and its content */
+
+.sidebar{
+  background-color: whitesmoke;
+  width: 180px;
+    flex-shrink: 0;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-right:1px solid #c8c8c8;
 }
+
+
+.sidebar-inside{
+  margin: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.up{}
+
+.mid{}
+
+.down{
+  vertical-align: bottom;
+}
+
+.btn-success{
+  border: 1px solid #000;
+  border-color: #aaa #444 #444 #aaa;
+  color: #000
+}
+
+.wide-btn{
+  width: 140px;
+}
+
+/* end of fix sidebar styles */
+
+/* applied to the left toggle sidebar and its contents */
 
 .events-left-bar{
   height: 100vh;
@@ -57,34 +94,71 @@
   border-right:3px solid #73AD21;
 }
 
-.index-form{
-  margin: 30px 25px 20px 20px;
+.ng-invalid.ng-dirty{
+  border-color: #FA787E;
 }
 
-.sidebar{
-	background-color: whitesmoke;
-	width: 180px;
-  	flex-shrink: 0;
-  	display:flex;
-  	flex-direction: column;
-  	justify-content: flex-start;
-  	border-right:1px solid #c8c8c8;
+.ng-valid.ng-dirty{
+  border-color: #78FA89;
 }
 
-.sidebar-inside{
-  margin: 30px 20px;
+/* end of left toggle sidebar styles */
+
+/* Applied to the right toggle sidebar */
+
+.events-right-bar{
+  height: 100vh;
+  padding-bottom : 40px;
+  flex: 2;
+  display:none;
+  background-color: #CADFAA;
+  border-left:3px solid #73AD21;
 }
 
+.single-event{
+  border:3px solid #73AD21;
+  padding: 10px;
+  margin: 10px 15px;
+}
+
+.scrollable-content {
+  overflow: auto;
+}
+
+.tag-table {
+  border-collapse: separate;
+    border-spacing: 10px;
+}
+
+.tag-td{
+    padding: 5px 15px;
+    margin: 0px 5px;
+    border-radius: 5px;
+    background-color: lightblue;
+}
+
+/* end of right toggle sidebar styles */
+
+/* applied to all the index.html content */
 .display-content{
 	display: flex;
 	flex-direction: row;
 	height: 100vh;
 	width: 100vw;
 }
+/* end of display-content style */
 
 .index-content{
 	height: 100vh;
 	width: 100vw;
+}
+
+#map {
+  flex: 2;
+}
+
+.modal-body{
+  height: 40vh;
 }
 
 .clear{
@@ -103,10 +177,6 @@
   margin: auto;
 }
 
-#map {
-  flex: 2;
-}
-
 .sign-form{
   margin: auto;
   width: 60%;
@@ -114,30 +184,18 @@
   padding: 10px;
 }
 
-.single-event{
-  border:3px solid #73AD21;
-  padding: 10px;
-  margin: 10px 15px;
+.index-form{
+  margin: 30px 25px 20px 20px;
 }
 
-.btn-success{
-  border: 1px solid #000;
-  border-color: #aaa #444 #444 #aaa;
-  color: #000
+.modal-header {
+    background: rgba(229, 255, 204, 0.6)!important;
 }
 
-.wide-btn{
-  width: 140px;
+.modal-footer {
+    background: rgba(229, 255, 204, 0.6)!important;
 }
 
-.ng-invalid.ng-dirty{
-  border-color: #FA787E;
-}
-
-.ng-valid.ng-dirty{
-  border-color: #78FA89;
-}
-
-.scrollable-content {
-  overflow: auto;
+.modal-content{
+  background-color: rgba(255,255,255, 0.8)!important;
 }
