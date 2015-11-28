@@ -14,7 +14,7 @@
 					<%= link_to image_tag(asset_path('logo.png'), :class => "title-logo"), root_path, 'data-no-turbolink' => true %>
 				</div>
 				<div class="header-buttons">
-					Here comes some buttons or something
+					<input name="filter-tag-input" type="text" class="filter-tag-input" ng-model="eventSearch" placeholder="search events"/>
 				</div>
 				<div class="header-login">
 					<%= headerLogin.html_safe %>

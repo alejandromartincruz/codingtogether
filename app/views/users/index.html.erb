@@ -5,8 +5,9 @@
   		<div class="up">
   			<a id="button" class="btn btn-success wide-btn show-events" href="#">View Events</a>
   			<a id="new-event-button" class="btn btn-success wide-btn new-event" href="#" ng-show = <%= user_signed_in? %>>New Event</a>
-        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="myFilter = {date: 1900-12-31}">Select by date</a>
-        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="myFilter = null">All the events</a>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="myFilter = { start_date: start }:gteComparator">Select by date</a>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="myFilter = ''">All the events</a>
+        <input name="filter-date-input" type="date" min="2010-08-14" max="2020-08-14" value="2010-08-14" class="filter-date-input" ng-model="eventSearch" placeholder="search events"/>
       </div>
   		
   		<div class="mid"></div>
@@ -78,7 +79,10 @@
 
 
 	<div class="events-right-bar scrollable-content" id='hideshow' value='hide/show'>
-	<section ng-repeat="event in events | orderBy:'date' | filter:myFilter">
+  <div class="search-field">
+    <h3>Search:</h3><input name="filter-tag-input" type="text" class="filter-tag-input" ng-model="eventSearch" placeholder="search field"/>
+  </div>
+	<section ng-repeat="event in events | orderBy:'date' | filter:eventSearch">
 		<div class="panel panel-default single-event">
 			<div class="panel-heading">
 				<h3>

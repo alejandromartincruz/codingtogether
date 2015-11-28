@@ -81,6 +81,16 @@
   width: 140px;
 }
 
+.filter-date-input {
+  width: 140px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  border-color: #aaa #444 #444 #aaa;
+  background-color: #5CB85C;
+  color: #666;
+  text-align: center;
+}
+
 /* end of fix sidebar styles */
 
 /* applied to the left toggle sidebar and its contents */
@@ -114,6 +124,25 @@
   background-color: #CADFAA;
   border-left:3px solid #73AD21;
 }
+
+.search-field{
+  margin: 40px 50px;
+}
+
+.filter-tag-input {
+  width: 25vw;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  border-color: #aaa #444 #444 #aaa;
+  background-color: whitesmoke;
+  color: #666;
+}
+
+.filter-tag-input::-webkit-input-placeholder { 
+  text-align: center;
+}
+
 
 .single-event{
   border:3px solid #73AD21;
