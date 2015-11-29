@@ -13,10 +13,16 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "vendor/assets/bower_components"
   ],
   "dependencies": {
-    "angularjs-datepicker": "~0.2.14",
-    "angular-google-maps": "~2.2.1"
+    "angularjs-datepicker": "~0.2.15",
+    "angular-google-maps": "~2.2.1",
+    "ng-tags-input": "~3.0.0",
+    "lodash": "~3.10.1",
+    "angular-simple-logger": "~0.1.5",
+    "angular": "~1.4.8",
+    "ngmap": "~1.14.16"
   }
 }

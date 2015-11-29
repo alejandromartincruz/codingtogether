@@ -13,7 +13,7 @@
   		<div class="mid"></div>
 	
       <div class="down">
-        Primer usuario de BBDD: <%= @users.first.username %> <br>
+        Primer usuario de BBDD: <%= @users.first.email %> <br>
         estas logeado? <%=user_signed_in?%> <br>
         Usuario logeado: <%if user_signed_in? %><%= current_user.username %><%else%>none<%end%>
       </div>
@@ -22,56 +22,8 @@
 
 	<div class="events-left-bar" id='hideshow' value='hide/show'>
 		<div class="index-form">
-		<!--  Review Form -->
-            <form name="eventForm" ng-controller="eventController as newCtrl" ng-submit="eventForm.$valid && newCtrl.addEvent(event)" novalidate>
-              <!--  Live Preview -->
-              <blockquote>
-                <strong>{{newCtrl.event.title}}</strong>
-                {{newCtrl.event.description}} <br>
-                <cite class="clearfix" ng-show="eventForm.$valid">
-                 Date: {{newCtrl.event.date | date:'dd-MM-yyyy'}} <br>
-                 Hour: {{newCtrl.event.hour | date:"H:mm"}} <br>
-                 Duration: {{newCtrl.event.duration}} minutes 
-                </cite>
-              </blockquote>
-
-              <!--  Review Form -->
-              <h4>Submit a new Event</h4>
-              <fieldset class="form-group">
-                <input ng-model="newCtrl.event.title" type="text" class="form-control" placeholder="Title of the event" title="Title" required/>
-              </fieldset>
-              <fieldset class="form-group">
-                <textarea ng-model="newCtrl.event.description" class="form-control" placeholder="Write the description of the event..." title="Description" required></textarea>
-              </fieldset>
-              <fieldset class="form-group">
-                <input ng-model="newCtrl.event.all_tags" type="text" class="form-control" placeholder="Tags separated with comma" title="Tags" required/>
-              </fieldset>
-              <fieldset class="form-group">
-                <input ng-model="newCtrl.event.date" type="date" class="form-control" placeholder="Day of the event" title="Date" required/>
-              </fieldset>
-              <fieldset class="form-group">
-                <input ng-model="newCtrl.event.hour" type="time" class="form-control" placeholder="Hour of the event" title="Hour" required/>
-              </fieldset>
-              <fieldset class="form-group">
-                <input ng-model="newCtrl.event.duration" type="number" class="form-control" placeholder="The duration of the event in minutes" title="Duration" min=1 required />
-              </fieldset>
-              <fieldset class="form-group">
-                <input ng-model="newCtrl.event.formatted_addres" type="text" ID="location-placheholder" class="form-control" placeholder="Where will be the event?" title="Location" required />
-              </fieldset>
-              <fieldset ng-show ="false" class="form-group">
-                <input ng-model="newCtrl.event.longitude" type="float" ID="location-longitude" class="form-control" title="Location-longitude" required />
-              </fieldset>
-              <fieldset ng-show ="false" class="form-group">
-                <input ng-model="newCtrl.event.latitude" type="float" ID="location-latitude" class="form-control" title="Location-latitude" required />
-              </fieldset>
-              <fieldset class="form-group">
-                <input id="submit-event-button" type="submit" class="btn btn-primary pull-right" value="Submit new Event" />
-              </fieldset>
-              <div>form is {{eventForm.$valid}}</div>
-            </form>
-        </div>
-
-		
+      <%= render 'form' %>
+    </div>		
 	</div>
 
 	
@@ -82,55 +34,12 @@
   <div class="search-field">
     <h3>Search:</h3><input name="filter-tag-input" type="text" class="filter-tag-input" ng-model="eventSearch" placeholder="search field"/>
   </div>
-	<section ng-repeat="event in events | orderBy:'date' | filter:eventSearch">
-		<div class="panel panel-default single-event">
-			<div class="panel-heading">
-				<h3>
-					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#dialogTestDialog{{$index}}">{{event.title}}</button>
-					<em class="pull-right">Created by user: {{event.username}}</em>
-				</h3>
-			</div>
-			<div class="panel-body">
-				Description:<br>{{event.description}} <br>
-				<em class="pull-right">{{event.date | date:'dd-MM-yyyy' }} - {{event.hour | date:"H:mm"}}</em> <br>
-				{{event.duration}} minutes <br>
-        <table class="tag-table">
-          <tr>
-              <td class="tag-td" ng-repeat="tag in event.tags">{{ tag.name }}</td>
-          </tr>
-        </table>
-			</div>
-		</div>
-    <!-- Modal -->
-    <div id="dialogTestDialog{{$index}}" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">{{event.title}}</h4>
-          </div>
-          <div class="modal-body">
-            <p>{{event.description}}</p>
-          </div>
-          <div class="modal-footer">
-            <table class="tag-table">
-              <tr>
-                  <td class="tag-td" ng-repeat="tag in event.tags">{{ tag.name }}</td>
-              </tr>
-            </table>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-	</section>
+	 <%= render 'eventLister' %>
 	</div>
 
 </div>
 
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap"></script>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap">
+    </script>
 <script async defer type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>

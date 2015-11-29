@@ -17,5 +17,7 @@
 //= require angular-animate
 //= require angular-resource
 //= require app.js
+//= require ng-tags-input.js
+//= require angular-google-maps.js
 //= require geomaps.js
 //= require_tree .

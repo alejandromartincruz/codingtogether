@@ -31,6 +31,13 @@ gem 'fullcalendar-rails'
 #gem "geocoder"
 gem 'bower-rails'
 gem 'acts-as-taggable-on'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-instagram'
+gem 'instagram'
+gem 'omniauth-google-oauth2'
+gem 'google-api-client', require: 'google/api_client'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
