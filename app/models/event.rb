@@ -17,8 +17,10 @@
 class Event < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :location
+	
 	has_many :taggings
 	has_many :tags, through: :taggings
+
 
 	def self.tagged_with(name)
 		Tag.find_by_name!(name).events

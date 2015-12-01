@@ -1,7 +1,7 @@
 (function() {
 	var app = angular.module('eventManager', [/*'uiGmapgoogle-maps','nemLogging'*/]);
 
-	app.controller('eventController', ['$rootScope', '$scope', '$http', 'dateFilter', function($rootScope, $scope, $http){
+	app.controller('eventController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
 
         var store = this;
         $scope.loadData = function () {
@@ -27,14 +27,16 @@
         });
   	};
 
-    $scope.dateFilter = 'computeShow(event.date)';
+    $scope.computeShow = function (event, showEvents) {
+        if (showEvents === 'upcomming' && moment(event.date).isAfter(moment())) {
+            return true;
+        } else if (showEvents === 'today' && moment().isSame(event.date, 'day')) {
+            return true;
+        } else if (showEvents === 'all') {
+            return true;
+        }
 
-    $scope.computeShow = function(date){
-      return (moment().format() <= date);
-    }
-
-    $scope.computeToday = function(date){
-      return (moment().format() == date);
+        return false;
     }
 
   }]);

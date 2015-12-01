@@ -1,4 +1,4 @@
-<section ng-repeat="event in events | orderBy:'date' | filter:eventSearch" ng-show="dateFilter">
+<section ng-repeat="event in events | orderBy:'date' | filter:eventSearch" ng-show="computeShow(event, showEvents)">
 		<div class="panel panel-default single-event">
 			<div class="panel-heading">
         on {{event.date | date:'MM/dd/yyyy'}}
@@ -37,9 +37,10 @@
           <div class="modal-footer">
             <table class="tag-table">
               <tr>
-                  <td class="tag-td" ng-repeat="tag in event.tags">{{ tag.name }}</td>
+                  <td class="tag-td" ng-repeat="tag in event.tags" >{{ tag.name }}</td>
               </tr>
             </table>
+            <a href="{{event.edit_url}}" class="btn btn-default">Edit</a>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>

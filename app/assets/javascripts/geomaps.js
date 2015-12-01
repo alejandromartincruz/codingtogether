@@ -1,6 +1,7 @@
 'use strict'
 var map;
-var image_path = "<%= asset_path 'your_pos.png' %>"
+var markers = []
+var oms
 
 if ("geolocation" in navigator){
   navigator.geolocation.getCurrentPosition(onLocation, onError);
@@ -55,13 +56,36 @@ function yourPosition(position){
   });
 };
 
+oms = new OverlappingMarkerSpiderfier(map);
+var iw = new gm.InfoWindow();
+oms.addListener('click', function(marker, event) {
+  iw.setContent(marker.desc);
+  iw.open(map, marker);
+});
 
+for (var i = 0; i < window.mapData.length; i ++) {
+  var datum = window.mapData[i];
+  var loc = new gm.LatLng(datum.lat, datum.lon);
+  var marker = new gm.Marker({
+    position: loc,
+    title: datum.h,
+    map: map
+  });
+  marker.desc = datum.d;
+  oms.addMarker(marker);  // <-- here
+}
 
 function createMarker(position, position_hash) {
   //debugger;
   console.log(position);
   console.log(position_hash.title);
   console.log(position_hash.description);
+
+  function postionExist(latitude, longitude){
+    markers.forEach(function(marker) {
+        console.log(marker.position.lat.function() == latitude)
+    });
+  }
 
   var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
@@ -78,19 +102,20 @@ function createMarker(position, position_hash) {
     content: contentString
   });
 
-  var marker = new google.maps.Marker({
-    position: position,
-    map: map,
-    icon: "https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/48/Map-Marker-Marker-Inside-Azure.png",
-    animation: google.maps.Animation.DROP,
-    title: position_hash.title,
-  });
+  if (moment(position_hash.date).isAfter(moment())) {
+    var marker = new google.maps.Marker({
+      position: position,
+      map: map,
+      icon: "https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/48/Map-Marker-Marker-Inside-Azure.png",
+      animation: google.maps.Animation.DROP,
+      title: position_hash.title,
+    });
 
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
-  });
+    marker.addListener('click', function() {
+      infowindow.open(map, marker);
+    });
 
-  console.log("marker created")
+  };
 };
 
 

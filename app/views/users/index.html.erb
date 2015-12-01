@@ -5,10 +5,9 @@
   		<div class="up">
   			<a id="button" class="btn btn-success wide-btn show-events" href="#">View Events</a>
   			<a id="new-event-button" class="btn btn-success wide-btn new-event" href="#" ng-show = <%= user_signed_in? %>>New Event</a>
-        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="dateFilter = computeShow(event.date)">Upcoming Events</a>
-        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="dateFilter = 'computeToday(event.date)'">Today Events</a>
-        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="dateFilter = true">All the events</a>
-        <input name="filter-date-input" type="date" min="2010-08-14" max="2020-08-14" value="2015-11-29" class="filter-date-input" ng-model="date" placeholder="search events"/>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="showEvents = 'upcomming'">Upcoming Events</a>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="showEvents = 'today'">Today Events</a>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="showEvents = 'all'">All the events</a>
       </div>
   		
   		<div class="mid"></div>
@@ -21,7 +20,7 @@
 		</div>
 	</div>
 
-	<div class="events-left-bar" id='hideshow' value='hide/show'>
+	<div class="events-left-bar scrollable-content" id='hideshow' value='hide/show'>
 		<div class="index-form">
       <%= render 'form' %>
     </div>		
@@ -40,7 +39,5 @@
 
 </div>
 
-<script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjWs8h-6_5cCNsyTKC0H0x85NZ2ZjSq9U&signed_in=true&callback=createMap">
-    </script>
-<script async defer type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+<script async defer type="text/javascript" 
+      src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>

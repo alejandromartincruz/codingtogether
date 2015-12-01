@@ -7,8 +7,9 @@
     <div class="panel-body">
 <%= render 'form' %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Show', @event, :class => "btn btn-success" %> |
+<%= link_to 'Back', events_path, :class => "btn btn-success" %> |
+<%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
     </div>
   </div>
 </div>
