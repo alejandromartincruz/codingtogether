@@ -1,7 +1,7 @@
 'use strict'
 var map;
-var markers = []
-var oms
+var markers = [];
+var oms;
 
 if ("geolocation" in navigator){
   navigator.geolocation.getCurrentPosition(onLocation, onError);
@@ -56,36 +56,13 @@ function yourPosition(position){
   });
 };
 
-oms = new OverlappingMarkerSpiderfier(map);
-var iw = new gm.InfoWindow();
-oms.addListener('click', function(marker, event) {
-  iw.setContent(marker.desc);
-  iw.open(map, marker);
-});
 
-for (var i = 0; i < window.mapData.length; i ++) {
-  var datum = window.mapData[i];
-  var loc = new gm.LatLng(datum.lat, datum.lon);
-  var marker = new gm.Marker({
-    position: loc,
-    title: datum.h,
-    map: map
-  });
-  marker.desc = datum.d;
-  oms.addMarker(marker);  // <-- here
-}
 
 function createMarker(position, position_hash) {
   //debugger;
   console.log(position);
   console.log(position_hash.title);
   console.log(position_hash.description);
-
-  function postionExist(latitude, longitude){
-    markers.forEach(function(marker) {
-        console.log(marker.position.lat.function() == latitude)
-    });
-  }
 
   var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
@@ -103,6 +80,7 @@ function createMarker(position, position_hash) {
   });
 
   if (moment(position_hash.date).isAfter(moment())) {
+
     var marker = new google.maps.Marker({
       position: position,
       map: map,
@@ -115,6 +93,9 @@ function createMarker(position, position_hash) {
       infowindow.open(map, marker);
     });
 
+    console.log("marker created");
+    markers.push(marker);
+    console.log(markers)
   };
 };
 
@@ -151,36 +132,12 @@ function setupAutocomplete(){
       $("#location-longitude").trigger('input');
       $("#location-latitude").val(place.geometry.location.lat().toFixed(7));
       $("#location-latitude").trigger('input');
-      $("location-placeholder").val(place.formatted_address);
-      $("location-placeholder").trigger('input');
+      $(".filling").val(place.formatted_address);
+      $(".filling").trigger('input');
       map.setCenter(place.geometry.location);
       createMarker(place.geometry.location, place.formatted_address);
     } else {
       alert("The place has no location...?")
     }
   });
-}
-
-
-
-/*
-//-------------------- cookies time... does it work?
-
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i=0; i<ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
-    }
-    return "";
-}
-*/
+};

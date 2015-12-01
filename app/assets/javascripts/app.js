@@ -22,7 +22,6 @@
             //$scope.loadData();
             $rootScope.events.push(store.event);
             $( ".events-left-bar" ).toggle();
-            console.log(Date.today());
             store.event={};
         });
   	};

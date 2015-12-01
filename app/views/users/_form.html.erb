@@ -32,7 +32,8 @@
                 <input ng-model="newCtrl.event.duration" type="number" class="form-control" placeholder="The duration of the event in minutes" title="Duration" min=1 required />
               </fieldset>
               <fieldset class="form-group">
-                <input ng-model="newCtrl.event.formatted_addres" type="text" ID="location-placheholder" class="form-control" placeholder="Where will be the event?" title="Location" required />
+                <input type="text" ID="location-placheholder" class="form-control" placeholder="Where will be the event?" title="Location" required />
+                <input ng-model="newCtrl.event.formatted_addres" type="text" ID="post-location-placheholder" class="form-control filling" title="post-location-placeholder" ng-show="false" />
               </fieldset>
               <fieldset ng-show ="false" class="form-group">
                 <input ng-model="newCtrl.event.longitude" type="float" ID="location-longitude" class="form-control" title="Location-longitude" required />
