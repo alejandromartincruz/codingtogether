@@ -1,7 +1,7 @@
 (function() {
-	var app = angular.module('eventManager', ['uiGmapgoogle-maps','nemLogging']);
+	var app = angular.module('eventManager', [/*'uiGmapgoogle-maps','nemLogging'*/]);
 
-	app.controller('eventController', ['$rootScope', '$scope', '$http', function($rootScope, $scope, $http){
+	app.controller('eventController', ['$rootScope', '$scope', '$http', 'dateFilter', function($rootScope, $scope, $http){
 
         var store = this;
         $scope.loadData = function () {
@@ -22,11 +22,24 @@
             //$scope.loadData();
             $rootScope.events.push(store.event);
             $( ".events-left-bar" ).toggle();
+            console.log(Date.today());
             store.event={};
         });
   	};
+
+    $scope.dateFilter = 'computeShow(event.date)';
+
+    $scope.computeShow = function(date){
+      return (moment().format() <= date);
+    }
+
+    $scope.computeToday = function(date){
+      return (moment().format() == date);
+    }
+
   }]);
 
+/*
   	app.directive('eventForm',function(){
   		return{
   			restrict: 'E',
@@ -53,5 +66,6 @@
             $scope.options = { scrollwheel: false };
         });
       });
+*/
 
 })();

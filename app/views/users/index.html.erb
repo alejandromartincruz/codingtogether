@@ -5,9 +5,10 @@
   		<div class="up">
   			<a id="button" class="btn btn-success wide-btn show-events" href="#">View Events</a>
   			<a id="new-event-button" class="btn btn-success wide-btn new-event" href="#" ng-show = <%= user_signed_in? %>>New Event</a>
-        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="myFilter = { start_date: start }:gteComparator">Select by date</a>
-        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="myFilter = ''">All the events</a>
-        <input name="filter-date-input" type="date" min="2010-08-14" max="2020-08-14" value="2010-08-14" class="filter-date-input" ng-model="eventSearch" placeholder="search events"/>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="dateFilter = computeShow(event.date)">Upcoming Events</a>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="dateFilter = 'computeToday(event.date)'">Today Events</a>
+        <a id="filter-by-date" class="btn btn-success wide-btn" href="#" ng-click="dateFilter = true">All the events</a>
+        <input name="filter-date-input" type="date" min="2010-08-14" max="2020-08-14" value="2015-11-29" class="filter-date-input" ng-model="date" placeholder="search events"/>
       </div>
   		
   		<div class="mid"></div>

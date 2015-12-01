@@ -23,6 +23,7 @@
     "lodash": "~3.10.1",
     "angular-simple-logger": "~0.1.5",
     "angular": "~1.4.8",
-    "ngmap": "~1.14.16"
+    "ngmap": "~1.14.16",
+    "moment": "~2.10.6"
   }
 }

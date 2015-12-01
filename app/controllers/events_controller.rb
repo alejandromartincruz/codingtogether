@@ -57,6 +57,7 @@ class EventsController < ApplicationController
       user = User.find_by(id: current_user.id);
       @event = user.events.new(event_params)
       @event.all_tags
+      @event.date = @event.date+1
       respond_to do |format|
         if @event.save
           format.html { redirect_to @event, notice: 'Event was successfully created.' }

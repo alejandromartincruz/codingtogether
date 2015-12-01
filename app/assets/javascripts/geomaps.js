@@ -1,5 +1,6 @@
 'use strict'
 var map;
+var image_path = "<%= asset_path 'your_pos.png' %>"
 
 if ("geolocation" in navigator){
   navigator.geolocation.getCurrentPosition(onLocation, onError);
@@ -43,32 +44,52 @@ function yourPosition(position){
     position: position,
     animation: google.maps.Animation.DROP,
     map: map,
-        icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        strokeColor: "blue",
-        scale: 6
-    },
-    label:"Y",
+    icon: {
+    url: 'assets/your_pos.png',
+    scaledSize: new google.maps.Size(60, 60), // scaled size
+    origin: new google.maps.Point(0,0), // origin
+    anchor: new google.maps.Point(0, 0) // anchor
+    },          
     title: "You are here",
-    content:"This is your actual position",
     color: "blue"
   });
 };
 
 
 
-function createMarker(position, info) {
+function createMarker(position, position_hash) {
   //debugger;
   console.log(position);
-  console.log(info);
+  console.log(position_hash.title);
+  console.log(position_hash.description);
+
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">'+position_hash.title+'</h1>'+
+      '<div id="bodyContent">'+
+      '<p>'+position_hash.description+'</p>'+
+      '<p>'+ position_hash.date +'</p>'+
+      '<p>'+ position_hash.formatted_addres +'</p>'
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
   var marker = new google.maps.Marker({
     position: position,
     map: map,
+    icon: "https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/48/Map-Marker-Marker-Inside-Azure.png",
     animation: google.maps.Animation.DROP,
-    label: 'E',
-    title: info,
-    content: info
+    title: position_hash.title,
   });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+
   console.log("marker created")
 };
 
@@ -83,7 +104,7 @@ function createMarker(position, info) {
         lat: position_hash.latitude,
         lng: position_hash.longitude
       };
-      createMarker(eventPosition, position_hash.formatted_addres);
+      createMarker(eventPosition, position_hash);
     });
   }
 

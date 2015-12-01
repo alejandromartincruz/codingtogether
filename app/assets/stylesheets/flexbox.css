@@ -221,6 +221,16 @@
     background: rgba(229, 255, 204, 0.6)!important;
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inside-modal-body{
+  margin: 25px 35px;
+}
+
 .modal-footer {
     background: rgba(229, 255, 204, 0.6)!important;
 }

@@ -1,20 +1,18 @@
-<section ng-repeat="event in events | orderBy:'date' | filter:eventSearch">
+<section ng-repeat="event in events | orderBy:'date' | filter:eventSearch" ng-show="dateFilter">
 		<div class="panel panel-default single-event">
 			<div class="panel-heading">
+        on {{event.date | date:'MM/dd/yyyy'}}
 				<h3>
 					<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#dialogTestDialog{{$index}}">{{event.title}}</button>
 					<em class="pull-right">Created by user: {{event.username}}</em>
 				</h3>
-			</div>
-			<div class="panel-body">
-				Description:<br>{{event.description}} <br>
-				<em class="pull-right">{{event.date | date:'dd-MM-yyyy' }} - {{event.hour | date:"H:mm"}}</em> <br>
-				{{event.duration}} minutes <br>
         <table class="tag-table">
           <tr>
+              <td><strong>Tags: </strong></td>
               <td class="tag-td" ng-repeat="tag in event.tags">{{ tag.name }}</td>
-          </tr>
+          </tr> 
         </table>
+
 			</div>
 		</div>
     <!-- Modal -->
@@ -25,10 +23,16 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">{{event.title}}</h4>
+            <h4 class="modal-title">{{event.title}}<em class="pull-right">Created by {{event.username}}</em></h4>
           </div>
           <div class="modal-body">
-            <p>{{event.description}}</p>
+            <div class="inside-modal-body">
+              {{event.description}}
+            </div>
+            <div  class="inside-modal-body">
+              day: {{event.date | date:'MM/dd/yyyy'}} at {{event.hour | date:'HH:MM'}} hours<br> 
+              at: {{event.formatted_addres}}
+            </div>
           </div>
           <div class="modal-footer">
             <table class="tag-table">
