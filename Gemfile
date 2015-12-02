@@ -31,7 +31,6 @@ gem 'fullcalendar-rails'
 #gem "geocoder"
 gem 'bower-rails'
 gem 'acts-as-taggable-on'
-gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'omniauth-instagram'

@@ -7,13 +7,8 @@
     <div class="panel-body">
 <%= render 'form' %>
 
-<%= link_to 'Show', @event, :class => "btn btn-success" %> |
-<%= link_to 'Back', events_path, :class => "btn btn-success" %> |
-<%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+<%= link_to 'Back', root_path, :class => "btn btn-success" %>
     </div>
   </div>
 </div>
-<hr>
-<div ng-controller="eventController as eventShow" style="border: 1px solid #000; width:50vw; height: 500px;">
-<ui-gmap-google-map center="map.center" options="options" zoom="map.zoom"></ui-gmap-google-map>
 </div>

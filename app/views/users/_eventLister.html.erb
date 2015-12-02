@@ -25,7 +25,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">{{event.title}}<em class="pull-right">Created by {{event.username}}</em></h4>
           </div>
-          <div class="modal-body">
+          <div class="modal-body scrollable-content">
             <div class="inside-modal-body">
               {{event.description}}
             </div>
@@ -40,7 +40,9 @@
                   <td class="tag-td" ng-repeat="tag in event.tags" >{{ tag.name }}</td>
               </tr>
             </table>
-            <a href="{{event.edit_url}}" class="btn btn-default">Edit</a>
+            <%if user_signed_in?%>
+              <a href="{{event.edit_url}}" class="btn btn-default" ng-show="<%= current_user.id %> == {{event.user_id}}">Edit</a>
+            <%end%>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>

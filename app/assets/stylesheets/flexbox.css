@@ -35,7 +35,6 @@
 .content{
   display: flex;
   flex-grow: 1;
-
   width: 100%;
   background-color: #EEE;
 }
@@ -47,11 +46,11 @@
 .sidebar{
   background-color: whitesmoke;
   width: 180px;
-    flex-shrink: 0;
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    border-right:1px solid #c8c8c8;
+  flex-shrink: 0;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-right:1px solid #c8c8c8;
 }
 
 
@@ -95,7 +94,7 @@
 /* applied to the left toggle sidebar and its contents */
 
 .events-left-bar{
-  height: 100vh;
+  height: 87vh;
   padding-bottom : 40px;
   flex: 1;
   display:none;
@@ -116,7 +115,7 @@
 /* Applied to the right toggle sidebar */
 
 .events-right-bar{
-  height: 100vh;
+  height: 87vh;
   padding-bottom : 40px;
   flex: 2;
   display:none;
@@ -217,6 +216,17 @@
 
 .modal-header {
     background: rgba(229, 255, 204, 0.6)!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top-modal-header{
+
+}
+
+.bottom-modal-header{
+  margin-bottom: -18px;
 }
 
 .modal-body {

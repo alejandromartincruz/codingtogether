@@ -2,11 +2,6 @@
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
   
-  config.omniauth :google_oauth2, ENV['536846635809-g1bqt7993i9scui0l81ntq6nsu3dj3nd.apps.googleusercontent.com
-'], ENV['kKf7rdUaYtJQFbBb5Qe-17EP'], scope: "email,profile,offline", prompt: "consent"
-  config.omniauth :instagram, ENV['INSTAGRAM_APP_ID'], ENV['INSTAGRAM_APP_SECRET']
-  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: "email"
-  config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -265,4 +260,8 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+
+  #Add your ID and secret here
+  #ID first, secret second
+  config.omniauth :twitter, "QpWBIdiCC9a8mgijA4yTLzS7Q", "w0Yyqp5qQtWZCEDfXoWsVP4UXzPuvUpQcvTAufib2lVBB9egH9"
 end

@@ -33,5 +33,6 @@
   </div>
   <div class="actions">
     <%= f.submit %>
+    <%= f.submit "destroy", method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
   </div>
 <% end %>

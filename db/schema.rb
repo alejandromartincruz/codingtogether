@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128115520) do
+ActiveRecord::Schema.define(version: 20151202110457) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20151128115520) do
   add_index "tags", ["name"], name: "index_tags_on_name"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: ""
     t.string   "username",               default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
