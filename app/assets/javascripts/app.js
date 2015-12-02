@@ -38,6 +38,44 @@
         return false;
     }
 
+    var access_token = "345565214.1677ed0.99162ff841f44dea86279962a74ead89"
+    $scope.access_parameters = {
+        access_token: access_token
+    };
+
+    $scope.instagramTags = function(tags){
+      tags.forEach(function(tag) {
+        grabImages(tag.name, 9, $scope.access_parameters);
+      });
+    }
+
+    function grabImages(tag, count, access_parameters) {
+      var instagramUrl = 'https://api.instagram.com/v1/tags/' + tag + '/media/recent?callback=?&count=' + count;
+      $.getJSON(instagramUrl, access_parameters, onDataLoaded);
+    }
+
+    function onDataLoaded(instagram_data) {
+      console.log("in do onDataLoaded");
+      var target = $(".pictures");
+      //console.log(instagram_data);
+      if (instagram_data.meta.code == 200) {
+          var photos = instagram_data.data;
+          //console.log(photos);
+          if (photos.length > 0) {
+              target.empty();
+              for (var key in photos) {
+                  var photo = photos[key];
+                  target.append('<a href="' + photo.link + '"><img class="thumbnail" src="' + photo.images.thumbnail.url + '"></a>')
+              }
+          } else {
+              target.html("nothing found");
+          }
+      } else {
+          var error = instagram_data.meta.error_message;
+          target.html(error);
+      }
+  }
+
   }]);
 
 /*

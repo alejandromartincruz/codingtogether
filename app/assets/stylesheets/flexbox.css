@@ -184,7 +184,7 @@
 }
 
 .modal-body{
-  height: 40vh;
+  height: 60vh;
 }
 
 .clear{
@@ -250,4 +250,9 @@
 .angular-google-map-container{
   height: 500px;
   width: 50vw;
+}
+
+.thumbnail {
+    display: block;
+    float: left;
 }
