@@ -51,8 +51,6 @@
     });
   }
 
-  //----------------------------------spyderfy-------------------------------->>
-
     function handleSucess(data){
       data.forEach(function(position_hash) {
         if (moment(position_hash.date).isAfter(moment())) {
@@ -81,15 +79,12 @@
           map: map,
           icon: "https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/48/Map-Marker-Marker-Inside-Azure.png"
           });
-                    
-      // to be possible in "click" show specific content
+
       marker.description = contentString;
 
       oms.addMarker(marker);
 
     };
-
-//---------------------------------------spyderfy----------------------------->>
 
 
   function onError(err){
@@ -129,62 +124,6 @@
     });
   };
 
-  /*
-  function createMarker(position, position_hash) {
-    //debugger;
-    console.log(position);
-    console.log(position_hash.title);
-    console.log(position_hash.description);
-
-    var contentString = '<div id="content">'+
-        '<div id="siteNotice">'+
-        '</div>'+
-        '<h1 id="firstHeading" class="firstHeading">'+position_hash.title+'</h1>'+
-        '<div id="bodyContent">'+
-        '<p>'+position_hash.description+'</p>'+
-        '<p>'+ position_hash.date +'</p>'+
-        '<p>'+ position_hash.formatted_addres +'</p>'
-        '</div>'+
-        '</div>';
-
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-
-    if (moment(position_hash.date).isAfter(moment())) {
-
-      var marker = new google.maps.Marker({
-        position: position,
-        map: map,
-        icon: "https://cdn1.iconfinder.com/data/icons/Map-Markers-Icons-Demo-PNG/48/Map-Marker-Marker-Inside-Azure.png",
-        animation: google.maps.Animation.DROP,
-        title: position_hash.title,
-      });
-
-      marker.addListener('click', function() {
-        infowindow.open(map, marker);
-      });
-
-      console.log("marker created");
-      markers.push(marker);
-      console.log(markers)
-    };
-  };
-  
-
-
-    function handleSucess(data){
-      data.forEach(function(position_hash) {
-        console.log(position_hash);
-        var eventPosition = {
-          lat: position_hash.latitude,
-          lng: position_hash.longitude
-        };
-        createMarker(eventPosition, position_hash);
-      });
-    }
-  */
-
     function handleError(jqXHR, status, errorThrown){
       alert("Something bad happened: "
         + status + ', ' + errorThrown);
@@ -196,8 +135,6 @@
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.addListener('place_changed', function(){
       var place = autocomplete.getPlace();
-      //var infowindow = new google.maps.InfoWindow({
-      //});
       if (place.geometry.location) {
         $("#location-longitude").val(place.geometry.location.lng().toFixed(7));
         $("#location-longitude").trigger('input');
