@@ -23,6 +23,7 @@
             $rootScope.events.push(store.event);
             $( ".events-left-bar" ).toggle();
             store.event={};
+            $(".void-input").val('');
         });
   	};
 
@@ -44,6 +45,7 @@
     };
 
     $scope.instagramTags = function(tags){
+      $('.pictures').empty();
       tags.forEach(function(tag) {
         grabImages(tag.name, 9, $scope.access_parameters);
       });
@@ -55,14 +57,13 @@
     }
 
     function onDataLoaded(instagram_data) {
-      console.log("in do onDataLoaded");
       var target = $(".pictures");
       //console.log(instagram_data);
       if (instagram_data.meta.code == 200) {
           var photos = instagram_data.data;
           //console.log(photos);
           if (photos.length > 0) {
-              target.empty();
+              //target.empty();
               for (var key in photos) {
                   var photo = photos[key];
                   target.append('<a href="' + photo.link + '"><img class="thumbnail" src="' + photo.images.thumbnail.url + '"></a>')

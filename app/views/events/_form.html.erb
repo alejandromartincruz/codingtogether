@@ -31,6 +31,10 @@
     <%= f.label :date %><br>
     <%= f.date_select :date %>
   </div>
+  <div class="field" id="location-placheholder">
+    <%= f.label :formatted_addres %><br>
+    <%= f.text_field :formatted_addres %>
+  </div>
   <div class="actions">
     <%= f.submit %>
     <%= f.submit "destroy", method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>

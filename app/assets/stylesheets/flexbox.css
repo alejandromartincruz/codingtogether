@@ -183,6 +183,11 @@
   flex: 2;
 }
 
+.modal-dialog{
+  height: 60vh;
+  width: 60vw;
+}
+
 .modal-body{
   height: 60vh;
 }
